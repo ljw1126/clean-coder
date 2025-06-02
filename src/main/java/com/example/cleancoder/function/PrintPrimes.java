@@ -55,6 +55,25 @@ public class PrintPrimes {
         }
 
         private void printNumbers(int[] numbers, int numberOfPrimes, int linesPerPage, int columns) {
+            new NumberPrinter(numbers, numberOfPrimes, linesPerPage, columns).invoke();
+        }
+
+    }
+
+    private class NumberPrinter {
+        private int[] numbers;
+        private int numberOfPrimes;
+        private int linesPerPage;
+        private int columns;
+
+        public NumberPrinter(int[] numbers, int numberOfPrimes, int linesPerPage, int columns) {
+            this.numbers = numbers;
+            this.numberOfPrimes = numberOfPrimes;
+            this.linesPerPage = linesPerPage;
+            this.columns = columns;
+        }
+
+        public void invoke() {
             int pagenumber = 1;
             int pageoffset = 1;
             while (pageoffset <= numberOfPrimes) {
@@ -72,6 +91,5 @@ public class PrintPrimes {
                 pageoffset = pageoffset + linesPerPage * columns;
             }
         }
-
     }
 }
