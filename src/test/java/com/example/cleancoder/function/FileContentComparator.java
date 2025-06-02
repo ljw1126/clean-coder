@@ -6,6 +6,7 @@ import java.io.FileReader;
 import static org.assertj.core.api.Assertions.*;
 
 public class FileContentComparator {
+    // PrintPrime Test Guide
     public void compare() {
         try {
             BufferedReader lead = new BufferedReader(new FileReader("lead"));
