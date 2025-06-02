@@ -14,7 +14,7 @@ public class PrintPrimes {
 
     private class PrimeGenerator {
         private final int ordmax = 30;
-        private int primes[] = new int[numberOfPrimes + 1];
+        private int[] primes;
         private int candidate;
         private int primeIndex;
         private boolean possiblyPrime;
@@ -24,6 +24,7 @@ public class PrintPrimes {
         private int multiples[] = new int[ordmax + 1];
 
         private int[] invoke() {
+            primes = new int[numberOfPrimes + 1];
             candidate = 1;
             primeIndex = 1;
             primes[1] = 2;
