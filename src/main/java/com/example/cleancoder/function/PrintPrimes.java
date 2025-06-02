@@ -6,13 +6,13 @@ public class PrintPrimes {
     private final int columns = 4;
 
     public void main(String[] args) {
-        PrimePrinterHelper primePrinterHelper = new PrimePrinterHelper();
+        PrimeGenerator primeGenerator = new PrimeGenerator();
 
-        int[] primes = primePrinterHelper.invoke();
+        int[] primes = primeGenerator.invoke();
         new NumberPrinter(linesPerPage, columns).invoke(primes, numberOfPrimes);
     }
 
-    private class PrimePrinterHelper {
+    private class PrimeGenerator {
         private final int ordmax = 30;
         private int primes[] = new int[numberOfPrimes + 1];
         private int candidate;
