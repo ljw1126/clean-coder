@@ -26,18 +26,21 @@ public class FitnessExample {
         }
 
         public String surround() throws Exception {
-            if (isTestPage()) {
-                surroundPageWithSetUpsAndTearDowns();
-            }
-
+            includeSetupAndTeardownsIfTestPageAndIncludeContent();
             return pageData.getHtml();
         }
 
-        private void surroundPageWithSetUpsAndTearDowns() throws Exception {
+        private void includeSetupAndTeardownsIfTestPageAndIncludeContent() throws Exception {
+            if (isTestPage()) {
+                includeSetupAndTearDowns();
+            }
+            pageData.setContent(buffer.toString());
+        }
+
+        private void includeSetupAndTearDowns() throws Exception {
             includeSetups();
             buffer.append(pageData.getContent());
             includeTearDowns();
-            pageData.setContent(buffer.toString());
         }
 
         private boolean isTestPage() throws Exception {
