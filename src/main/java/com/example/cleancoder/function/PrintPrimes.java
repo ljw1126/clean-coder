@@ -1,12 +1,16 @@
 package com.example.cleancoder.function;
 
 public class PrintPrimes {
+    private final int numberOfPrimes = 1000;
+
     public void main(String[] args) {
-        new PrimePrinterHelper().invoke();
+        PrimePrinterHelper primePrinterHelper = new PrimePrinterHelper();
+
+        int[] primes = primePrinterHelper.invoke();
+        primePrinterHelper.printNumbers(primes, numberOfPrimes);
     }
 
     private class PrimePrinterHelper {
-        private final int numberOfPrimes = 1000;
         private final int linesPerPage = 50;
         private final int columns = 4;
         private final int ordmax = 30;
@@ -23,7 +27,7 @@ public class PrintPrimes {
         private int n;
         private int multiples[] = new int[ordmax + 1];
 
-        private void invoke() {
+        private int[] invoke() {
             candidate = 1;
             primeIndex = 1;
             primes[1] = 2;
@@ -51,7 +55,7 @@ public class PrintPrimes {
                 primes[primeIndex] = candidate;
             }
 
-            printNumbers(primes, numberOfPrimes);
+            return primes;
         }
 
         private void printNumbers(int[] numbers, int numberOfPrimes) {
