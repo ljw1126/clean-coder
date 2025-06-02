@@ -26,6 +26,9 @@ dependencies {
     testImplementation "org.assertj:assertj-core:3.27.3"
     testImplementation "org.mockito:mockito-core:5.17.0"
     testImplementation "org.mockito:mockito-junit-jupiter:5.17.0"
+
+    // Function 강의 사용
+    implementation files('libs/fitnesse-20081201.jar')
 }
 
 tasks.named('test') {
