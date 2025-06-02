@@ -51,10 +51,10 @@ public class PrintPrimes {
                 primes[primeIndex] = candidate;
             }
 
-            printNumbers();
+            printNumbers(primes, numberOfPrimes);
         }
 
-        private void printNumbers() {
+        private void printNumbers(int[] primes, int numberOfPrimes) {
             pagenumber = 1;
             pageoffset = 1;
             while (pageoffset <= numberOfPrimes) {
