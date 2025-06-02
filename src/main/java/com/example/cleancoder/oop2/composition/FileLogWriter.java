@@ -1,6 +1,6 @@
-package com.example.cleancoder.oop2.inheritance;
+package com.example.cleancoder.oop2.composition;
 
-public class FileLogWriter {
+public class FileLogWriter implements LogWriter {
     private final StringBuilder stringBuilder;
 
     public FileLogWriter() {
