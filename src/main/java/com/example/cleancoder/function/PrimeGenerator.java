@@ -11,7 +11,7 @@ class PrimeGenerator {
     private int n;
     private int multiples[] = new int[ordmax + 1];
 
-    public int[] invoke(int numberOfPrimes) {
+    public int[] generatePrimes(int numberOfPrimes) {
         primes = new int[numberOfPrimes + 1];
         candidate = 1;
         primeIndex = 1;

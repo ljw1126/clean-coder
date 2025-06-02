@@ -9,7 +9,7 @@ public class NumberPrinter {
         this.columns = columns;
     }
 
-    public void invoke(int[] numbers, int numberOfPrimes) {
+    public void print(int[] numbers, int numberOfPrimes) {
         int pagenumber = 1;
         int pageoffset = 1;
         while (pageoffset <= numberOfPrimes) {
