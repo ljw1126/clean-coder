@@ -1,4 +1,4 @@
-package com.example.cleancoder.functionstructure;
+package com.example.cleancoder.functionstructure.movie;
 
 public class NewReleaseMovie extends Movie {
   public NewReleaseMovie(String title) {

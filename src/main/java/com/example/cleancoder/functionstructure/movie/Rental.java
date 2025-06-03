@@ -1,4 +1,4 @@
-package com.example.cleancoder.functionstructure;
+package com.example.cleancoder.functionstructure.movie;
 
 //From book: 'Refactoring' by Martin Fowler
 //This is the original code before refactoring begins

@@ -1,4 +1,4 @@
-package com.example.cleancoder.functionstructure;
+package com.example.cleancoder.functionstructure.movie;
 
 import java.util.ArrayList;
 import java.util.List;

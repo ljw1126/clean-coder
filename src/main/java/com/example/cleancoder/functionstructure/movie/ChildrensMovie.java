@@ -1,4 +1,4 @@
-package com.example.cleancoder.functionstructure;
+package com.example.cleancoder.functionstructure.movie;
 
 public class ChildrensMovie extends Movie {
   public ChildrensMovie(String title) {

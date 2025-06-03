@@ -1,4 +1,4 @@
-package com.example.cleancoder.functionstructure;
+package com.example.cleancoder.functionstructure.movie;
 
 public abstract class Movie {
     public static final int CHILDRENS = 2;
