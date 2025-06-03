@@ -1,47 +1,24 @@
 package com.example.cleancoder.functionstructure.stack;
 
-public class Stack {
-    private int size = 0;
-    private int capacity;
-    private int [] elements;
+/**
+ * Created with IntelliJ IDEA.
+ * User: msbaek
+ * Date: 13. 07. 12.금요일
+ * Time: 오후 5:32
+ * To change this template use File | Settings | File Templates.
+ */
+public interface Stack {
+  boolean isEmpty();
 
-    public Stack(int capacity) {
-        this.capacity = capacity;
-        elements = new int [capacity];
-    }
+  Integer getSize();
 
-    public Boolean isEmpty() {
-        return size == 0;
-    }
+  void push(int element);
 
-    public Integer getSize() {
-        return size;
-    }
+  int pop();
 
-    public void push(int element) {
-        if(size == capacity)
-            throw new Overflow();
-        this.elements[size++] = element;
-    }
+  Integer top();
 
-    public int pop() {
-        if(size == 0)
-            throw new Underflow();
-        return elements[--size];
-    }
+  Integer find(int element);
 
-    public static Stack make(int capacity) {
-        if(capacity < 0)
-            throw new IllegalCapacity();
-        return new Stack(capacity);
-    }
-
-    public class Overflow extends RuntimeException {
-    }
-
-    public static class IllegalCapacity extends RuntimeException {
-    }
-
-    public class Underflow extends RuntimeException {
-    }
+  public class Empty extends RuntimeException {}
 }

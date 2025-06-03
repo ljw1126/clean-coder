@@ -11,7 +11,7 @@ public class StackTest {
 
     @Before
     public void setUp() {
-        stack = new Stack(10);
+        stack = new BoundedStack(10);
     }
 
     @Test
@@ -36,23 +36,23 @@ public class StackTest {
 
     @Test
     public void whenPushedOverCapacity_StackOverflows() {
-        stack = Stack.make(1);
+        stack = BoundedStack.make(1);
         stack.push(1);
 
         assertThatThrownBy(() -> stack.push(1))
-                .isInstanceOf(Stack.Overflow.class);
+                .isInstanceOf(BoundedStack.Overflow.class);
     }
 
     @Test
     public void whenCreatingStackWithNegativeSize_shouldThrowIllegalCapacity() {
-        assertThatThrownBy(() -> Stack.make(-1))
-                .isInstanceOf(Stack.IllegalCapacity.class);
+        assertThatThrownBy(() -> BoundedStack.make(-1))
+                .isInstanceOf(BoundedStack.IllegalCapacity.class);
     }
 
     @Test
     public void whenEmptyStackIsPopped_StackUnderflows() {
         assertThatThrownBy(() -> stack.pop())
-                .isInstanceOf(Stack.Underflow.class);
+                .isInstanceOf(BoundedStack.Underflow.class);
     }
 
     @Test
@@ -69,5 +69,32 @@ public class StackTest {
 
         assertThat(stack.pop()).isEqualTo(2);
         assertThat(stack.pop()).isOne();
+    }
+
+    @Test
+    public void
+    whenOneIsPushed_OneIsOnTop() {
+        stack.push(1);
+        assertThat(stack.top()).isOne();
+    }
+
+    @Test
+    public void whenStackIsEmpty_TopThrowsEmpty() {
+        assertThatThrownBy(() -> stack.pop())
+                .isInstanceOf(Stack.Empty.class);
+    }
+
+    @Test
+    public void whenOneAndTwoArePushed_findOneReturnsIndex() {
+        stack.push(1);
+        stack.push(2);
+
+        assertThat(stack.find(1)).isEqualTo(1);
+        assertThat(stack.find(2)).isEqualTo(0);
+    }
+
+    @Test
+    public void whenStackHasNo2_find2ShouldReturnNull() {
+        assertThat(stack.find(2)).isNull();
     }
 }
