@@ -23,7 +23,7 @@ public class ExpenseReport {
 
         printExpenses(printer);
 
-        printTotals(printer, mealExpenses, total);
+        printTotals(printer);
     }
 
     private void totalUpExpenses() {
@@ -56,7 +56,7 @@ public class ExpenseReport {
         printer.print("Expenses " + getDate() + "\n");
     }
 
-    private void printTotals(ReportPrinter printer, int mealExpenses, int total) {
+    private void printTotals(ReportPrinter printer) {
         printer.print(String.format("\nMeal expenses $%.02f", penniesToDollars(mealExpenses)));
         printer.print(String.format("\nTotal $%.02f", penniesToDollars(total)));
     }
