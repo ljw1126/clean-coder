@@ -10,6 +10,7 @@ public class ExpenseReport {
     private List<Expense> expenses = new ArrayList<Expense>();
     private int total;
     private int mealExpenses;
+    private ReportPrinter printer;
 
     public ExpenseReport() {
         this.total = 0;
@@ -17,13 +18,14 @@ public class ExpenseReport {
     }
 
     public void printReport(ReportPrinter printer) {
-        printHeader(printer);
+        this.printer = printer;
+        printHeader();
 
         totalUpExpenses();
 
-        printExpenses(printer);
+        printExpenses();
 
-        printTotals(printer);
+        printTotals();
     }
 
     private void totalUpExpenses() {
@@ -35,7 +37,7 @@ public class ExpenseReport {
         }
     }
 
-    private void printExpenses(ReportPrinter printer) {
+    private void printExpenses() {
         for(Expense expense : expenses) {
             String name = getName(expense);
 
@@ -56,11 +58,11 @@ public class ExpenseReport {
         return name;
     }
 
-    private void printHeader(ReportPrinter printer) {
+    private void printHeader() {
         printer.print("Expenses " + getDate() + "\n");
     }
 
-    private void printTotals(ReportPrinter printer) {
+    private void printTotals() {
         printer.print(String.format("\nMeal expenses $%.02f", penniesToDollars(mealExpenses)));
         printer.print(String.format("\nTotal $%.02f", penniesToDollars(total)));
     }
