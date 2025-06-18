@@ -1,8 +1,6 @@
 package com.example.cleancoder.solid.ocp;
 
-import static com.example.cleancoder.solid.ocp.Expense.Type.*;
-
-public class Expense {
+public abstract class Expense {
     public enum Type {DINNER, BREAKFAST, CAR_RENTAL};
     public Type type;
     public int amount;
@@ -12,12 +10,6 @@ public class Expense {
         this.amount = amount;
     }
 
-    public boolean isMeal() {
-        return type == BREAKFAST || type == DINNER;
-    }
-
-    public boolean isOverage() {
-        return (type == DINNER && amount > 5000)
-                || (type == BREAKFAST && amount > 1000);
-    }
+    abstract boolean isOverage();
+    abstract boolean isMeal();
 }
