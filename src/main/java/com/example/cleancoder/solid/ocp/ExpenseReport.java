@@ -8,23 +8,31 @@ import static com.example.cleancoder.solid.ocp.Expense.Type.DINNER;
 
 public class ExpenseReport {
     private List<Expense> expenses = new ArrayList<Expense>();
+    private int total;
+    private int mealExpenses;
+
+    public ExpenseReport() {
+        this.total = 0;
+        this.mealExpenses = 0;
+    }
 
     public void printReport(ReportPrinter printer) {
-        int total = 0;
-        int mealExpenses = 0;
-
         printHeader(printer);
 
+        totalUpExpenses();
+
+        printExpenses(printer);
+
+        printTotals(printer, mealExpenses, total);
+    }
+
+    private void totalUpExpenses() {
         for (Expense expense : expenses) {
             if (expense.type == BREAKFAST || expense.type == DINNER)
                 mealExpenses += expense.amount;
 
             total += expense.amount;
         }
-
-        printExpenses(printer);
-
-        printTotals(printer, mealExpenses, total);
     }
 
     private void printExpenses(ReportPrinter printer) {
