@@ -32,23 +32,35 @@ public class ExpenseReport {
     }
 
     private void totalUpExpenses() {
-        for (Expense expense : expenses) {
-            if (expense.type == BREAKFAST || expense.type == DINNER)
-                mealExpenses += expense.amount;
+        for (Expense expense : expenses)
+            addTotals(expense);
+    }
 
-            total += expense.amount;
-        }
+    private void addTotals(Expense expense) {
+        if (isMeal(expense))
+            mealExpenses += expense.amount;
+
+        total += expense.amount;
+    }
+
+    private boolean isMeal(Expense expense) {
+        return expense.type == BREAKFAST || expense.type == DINNER;
     }
 
     private void printExpenses() {
-        for(Expense expense : expenses) {
-            String name = getName(expense);
+        for(Expense expense : expenses)
+            printExpense(expense);
+    }
 
-            printer.print(String.format("%s\t%s\t$%.02f\n",
-                    (  (expense.type == DINNER && expense.amount > 5000)
-                            || (expense.type == BREAKFAST && expense.amount > 1000)) ? "X" : " ",
-                    name, penniesToDollars(expense.amount)));
-        }
+    private void printExpense(Expense expense) {
+        printer.print(String.format("%s\t%s\t$%.02f\n",
+                isOverage(expense) ? "X" : " ",
+                getName(expense), penniesToDollars(expense.amount)));
+    }
+
+    private boolean isOverage(Expense expense) {
+        return (expense.type == DINNER && expense.amount > 5000)
+                || (expense.type == BREAKFAST && expense.amount > 1000);
     }
 
     private static String getName(Expense expense) {
