@@ -8,7 +8,7 @@ import static com.example.cleancoder.solid.ocp.Expense.Type.CAR_RENTAL;
 import static com.example.cleancoder.solid.ocp.Expense.Type.DINNER;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ExpenseReportTest {
+public class ExpenseReporterTest {
     private ExpenseReporter report = new ExpenseReporter();
     private MockReportPrinter printer = new MockReportPrinter();
 

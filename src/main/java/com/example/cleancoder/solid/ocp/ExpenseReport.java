@@ -21,7 +21,7 @@ public class ExpenseReport {
             addTotals(expense);
     }
 
-    protected void addTotals(Expense expense) {
+    private void addTotals(Expense expense) {
         if (isMeal(expense))
             mealExpenses += expense.amount;
 

@@ -28,10 +28,6 @@ public class ExpenseReporter {
         expenseReport.totalUpExpenses();
     }
 
-    private void addTotals(Expense expense) {
-        expenseReport.addTotals(expense);
-    }
-
     public void addExpense(Expense expense) {
         expenseReport.addExpense(expense);
     }
