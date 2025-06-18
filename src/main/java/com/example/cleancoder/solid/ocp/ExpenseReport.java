@@ -13,12 +13,22 @@ public class ExpenseReport {
         int total = 0;
         int mealExpenses = 0;
 
-        printer.print("Expenses " + getDate() + "\n");
+        printHeader(printer);
 
         for (Expense expense : expenses) {
             if (expense.type == BREAKFAST || expense.type == DINNER)
                 mealExpenses += expense.amount;
 
+            total += expense.amount;
+        }
+
+        printExpenses(printer);
+
+        printTotals(printer, mealExpenses, total);
+    }
+
+    private void printExpenses(ReportPrinter printer) {
+        for(Expense expense : expenses) {
             String name = "TILT";
             switch (expense.type) {
                 case DINNER: name = "Dinner"; break;
@@ -31,9 +41,14 @@ public class ExpenseReport {
                             || (expense.type == BREAKFAST && expense.amount > 1000)) ? "X" : " ",
                     name, penniesToDollars(expense.amount)));
 
-            total += expense.amount;
         }
+    }
 
+    private void printHeader(ReportPrinter printer) {
+        printer.print("Expenses " + getDate() + "\n");
+    }
+
+    private void printTotals(ReportPrinter printer, int mealExpenses, int total) {
         printer.print(String.format("\nMeal expenses $%.02f", penniesToDollars(mealExpenses)));
         printer.print(String.format("\nTotal $%.02f", penniesToDollars(total)));
     }
