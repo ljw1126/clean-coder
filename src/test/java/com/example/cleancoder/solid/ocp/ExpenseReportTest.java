@@ -9,12 +9,12 @@ import static com.example.cleancoder.solid.ocp.Expense.Type.DINNER;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ExpenseReportTest {
-    private ExpenseReport report = new ExpenseReport();
+    private ExpenseReporter report = new ExpenseReporter();
     private MockReportPrinter printer = new MockReportPrinter();
 
     @BeforeEach
     public void setUp() {
-        report = new ExpenseReport();
+        report = new ExpenseReporter();
         printer = new MockReportPrinter();
     }
 
