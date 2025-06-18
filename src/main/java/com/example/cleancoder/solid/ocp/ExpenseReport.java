@@ -37,19 +37,23 @@ public class ExpenseReport {
 
     private void printExpenses(ReportPrinter printer) {
         for(Expense expense : expenses) {
-            String name = "TILT";
-            switch (expense.type) {
-                case DINNER: name = "Dinner"; break;
-                case BREAKFAST: name = "Breakfast"; break;
-                case CAR_RENTAL: name = "Car Rental"; break;
-            }
+            String name = getName(expense);
 
             printer.print(String.format("%s\t%s\t$%.02f\n",
                     (  (expense.type == DINNER && expense.amount > 5000)
                             || (expense.type == BREAKFAST && expense.amount > 1000)) ? "X" : " ",
                     name, penniesToDollars(expense.amount)));
-
         }
+    }
+
+    private static String getName(Expense expense) {
+        String name = "TILT";
+        switch (expense.type) {
+            case DINNER: name = "Dinner"; break;
+            case BREAKFAST: name = "Breakfast"; break;
+            case CAR_RENTAL: name = "Car Rental"; break;
+        }
+        return name;
     }
 
     private void printHeader(ReportPrinter printer) {
