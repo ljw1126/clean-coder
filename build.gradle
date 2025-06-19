@@ -29,6 +29,9 @@ dependencies {
 
     // Function 강의 사용
     implementation files('libs/fitnesse-20081201.jar')
+
+    // split phase - object mapper
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.3'
 }
 
 tasks.named('test') {
