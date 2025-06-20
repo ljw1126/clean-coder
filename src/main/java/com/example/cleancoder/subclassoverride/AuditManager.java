@@ -47,31 +47,44 @@ public class AuditManager {
     }
 
     public void addRecord(String visitorName, LocalDateTime timeOfVisit) {
-        String[] filePaths = Directory.getFiles(directoryName);
+        String[] filePaths = getFiles();
         Sorted[] sorted = sortByIndex(filePaths);
 
         String newRecord = visitorName + ';' + timeOfVisit;
 
         if (sorted.length == 0) {
             String newFile = Path.combine(directoryName, "audit_1.txt");
-            File.writeAllText(newFile, newRecord);
+            writeAllText(newFile, newRecord);
             return;
         }
 
         int currentFileIndex = sorted[sorted.length - 1].index;
         String currentFilePath = sorted[sorted.length - 1].path;
-        List<String> lines = new ArrayList<>(Arrays.asList(File.readAllLines(currentFilePath)));
+        List<String> lines = new ArrayList<>(Arrays.asList(readAllLines(currentFilePath)));
 
         if (lines.size() < maxEntriesPerFile) {
             lines.add(newRecord);
             String newContent = String.join("\n", lines);
-            File.writeAllText(currentFilePath, newContent);
+            writeAllText(currentFilePath, newContent);
         } else {
             int newIndex = currentFileIndex + 1;
             String newName = "audit_" + newIndex + ".txt";
             String newFile = Path.combine(directoryName, newName);
-            File.writeAllText(newFile, newRecord);
+            writeAllText(newFile, newRecord);
         }
+    }
+
+    protected String[] readAllLines(String currentFilePath) {
+        return File.readAllLines(currentFilePath);
+    }
+
+    protected String[] getFiles() {
+        String[] filePaths = Directory.getFiles(directoryName);
+        return filePaths;
+    }
+
+    protected void writeAllText(String newFile, String newRecord) {
+        File.writeAllText(newFile, newRecord);
     }
 
     private Sorted[] sortByIndex(String[] filePaths) {
